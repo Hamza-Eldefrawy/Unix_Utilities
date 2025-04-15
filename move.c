@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	}
 	else
 	{
-		rename(argv[1], argv[2]);
+		return rename(argv[1], argv[2]);
 	}
-	return 0;
+	
 }
