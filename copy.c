@@ -24,7 +24,7 @@ int main(int argc, char** argv) // ./copy path_to_file path_to_copied
 		exit(-2);
 	}
 	int num_read;
-	int fd1 = open(argv[2], O_WRONLY | O_CREAT, 0644);
+	int fd1 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	while((num_read = read(fd0, buf, 100)) > 0)
 	{
  	 if(write(fd1, buf, num_read) < 0)
