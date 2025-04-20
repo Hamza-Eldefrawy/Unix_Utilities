@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 				newargs[i++] = cmd;
 				char *token;
 				while ((token = strtok(NULL, " ")) != NULL) {
-					newargs[i++] = cmd;
+					newargs[i++] = token;
 				}
 				execvp(cmd, newargs);
 				printf("Execution failed");
