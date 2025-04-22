@@ -104,6 +104,10 @@ int main(int argc, char *argv[])
         int infd;
         int outfd;
         int errfd;
+        int saved_stdin, saved_stdout, saved_stderr;
+        saved_stdin = dup(0);
+        saved_stdout = dup(1);
+        saved_stderr = dup(2);
         // stdin
         char *in = strchr(buf, '<');
         if(in)
@@ -257,6 +261,15 @@ int main(int argc, char *argv[])
 				exit(-1);
 			}
 		}
+		// Restore the original file descriptors
+        dup2(saved_stdin, 0);
+        dup2(saved_stdout, 1);
+        dup2(saved_stderr, 2);
+        
+        // Close the saved file descriptors
+        close(saved_stdin);
+        close(saved_stdout);
+        close(saved_stderr);
 	}
     free_variables();
 	return 0;
